@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Contact } from '../../contact.model';
+import { ContactItemComponent } from '../contact-item/contact-item';
 
 @Component({
   selector: 'cms-contact-list',
   standalone: true,
+  imports: [CommonModule, ContactItemComponent],
   templateUrl: './contact-list.html',
-  styleUrl: './contact-list.css'
+  styleUrls: ['./contact-list.css']
 })
 export class ContactListComponent {
   contacts: Contact[] = [
@@ -26,4 +29,14 @@ export class ContactListComponent {
       []
     )
   ];
+  
+  @Output() selectedContactEvent = new EventEmitter<Contact>();
+
+  onSelected(contact: Contact) {
+    this.selectedContactEvent.emit(contact);
+  }
+
+  trackById(index: number, contact: Contact) {
+    return contact.id;
+  }
 }
