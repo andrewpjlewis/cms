@@ -6,6 +6,18 @@
   gap: 1rem;
 }
 
+.row {
+  margin-left:.025rem;
+  margin-right:.025rem;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+
 .center-panel cms-document-item {
   flex: 0 0 calc(25% - 1rem);
   box-sizing: border-box;
