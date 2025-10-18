@@ -8,5 +8,5 @@ import { Document } from '../document.model';
   styleUrls: ['./document-detail.css']
 })
 export class DocumentDetail {
-  @Input() document!:Document;
+  @Input() document: Document | null = null;
 }

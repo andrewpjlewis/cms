@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Contact } from '../../contact.model';
+import { Contact } from '../contact.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

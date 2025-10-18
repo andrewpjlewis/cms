@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { DocumentDetail } from './document-detail/document-detail';
-import { DocumentList } from './document-list/document-list';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Document } from  './document.model';
+import { DocumentList } from './document-list/document-list';
+import { DocumentDetail } from './document-detail/document-detail';
+import { DocumentService } from './document';
 
 @Component({
   selector: 'cms-documents',
@@ -11,10 +12,16 @@ import { Document } from  './document.model';
   templateUrl: './documents.html',
   styleUrls: ['./documents.css']
 })
-export class Documents {
-  selectedDocument?: Document;
+export class Documents implements OnInit{
+  selectedDocument: Document | null = null;
 
-  onSelectedDocument(doc: Document) {
-    this.selectedDocument = doc;
+  constructor(private documentService: DocumentService) { }
+
+  ngOnInit(): void {
+    this.documentService.documentSelectedEvent.subscribe(
+      (doc: Document) => {
+        this.selectedDocument = doc;
+      }
+    );
   }
 }
