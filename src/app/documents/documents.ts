@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Document } from  './document.model';
 import { DocumentList } from './document-list/document-list';
-import { DocumentDetail } from './document-detail/document-detail';
 import { DocumentService } from './document';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'cms-documents',
   standalone: true,
-  imports: [DocumentDetail, DocumentList, CommonModule],
+  imports: [DocumentList, CommonModule, RouterOutlet],
   templateUrl: './documents.html',
   styleUrls: ['./documents.css']
 })
