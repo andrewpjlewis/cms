@@ -12,7 +12,7 @@ import { DocumentService } from './document';
   templateUrl: './documents.html',
   styleUrls: ['./documents.css']
 })
-export class Documents implements OnInit{
+export class DocumentsComponent implements OnInit{
   selectedDocument: Document | null = null;
 
   constructor(private documentService: DocumentService) { }
