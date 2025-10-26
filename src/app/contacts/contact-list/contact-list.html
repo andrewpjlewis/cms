@@ -1,15 +1,12 @@
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
     <h3 class="panel-title pull-left">Contacts</h3>
-    <a href="#" class="btn btn-success btn-sm pull-right">New Contact</a>
+    <a [routerLink]="['new']" class="btn btn-success btn-sm pull-right">New Contact</a>
   </div>
   <div>
     <ul class="list-group">
       <li *ngFor="let contact of contacts; trackBy: trackById" class="list-group-item">
-        <cms-contact-item
-          [contact]="contact"
-          (selected)="onSelected($event)">
-        </cms-contact-item>
+        <cms-contact-item [contact]="contact"></cms-contact-item>
       </li>
     </ul>
   </div>

@@ -1,4 +1,13 @@
-<a href="#" class="list-group-item d-flex align-items-center justify-content-between py-2" (click)="onClick()">
+<a
+  [routerLink]="[contact.id]"
+  routerLinkActive="active"
+  class="list-group-item d-flex align-items-center justify-content-between py-2"
+>
   <span>{{ contact.name }}</span>
-  <img [src]="contact.imageUrl" [alt]="contact.name" width="40" class="contact-img" />
+  <img
+    [src]="contact.imageUrl"
+    [alt]="contact.name"
+    width="40"
+    class="contact-img"
+  />
 </a>
