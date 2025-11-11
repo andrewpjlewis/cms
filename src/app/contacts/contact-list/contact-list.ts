@@ -5,24 +5,27 @@ import { ContactItemComponent } from '../contact-item/contact-item';
 import { ContactService } from '../contact';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ContactsFilterPipe } from '../contacts-filter-pipe';
 
 @Component({
   selector: 'cms-contact-list',
   standalone: true,
-  imports: [CommonModule, ContactItemComponent, RouterModule],
+  imports: [CommonModule, ContactItemComponent, RouterModule, ContactsFilterPipe],
   templateUrl: './contact-list.html',
   styleUrls: ['./contact-list.css']
 })
 export class ContactListComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];
   subscription!: Subscription;
+  term: string = '';
 
-  constructor(private contactService: ContactService) { }
-
+  constructor(private contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.contacts = this.contactService.getContacts();
+    // Trigger HTTP GET
+    this.contactService.getContacts();
 
+    // Subscribe to the event for updated contacts
     this.subscription = this.contactService.contactListChangedEvent.subscribe(
       (contactsList: Contact[]) => {
         this.contacts = contactsList;
@@ -35,10 +38,15 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   onSelected(contact: Contact) {
-    this.contactService.selectedContactEvent.emit(contact);
+    // Fixed property name
+    this.contactService.contactSelectedEvent.emit(contact);
   }
 
   trackById(index: number, contact: Contact) {
     return contact.id;
+  }
+
+  search(value: string) {
+    this.term = value;
   }
 }
